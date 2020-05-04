@@ -12,6 +12,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   employee: Employee = new Employee();
   submitted = false;
+  errorMessage: any;
 
   constructor(private employeeService: EmployeeService,
     private router: Router) { }
@@ -26,7 +27,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   save() {
     this.employeeService.createEmployee(this.employee)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => console.log(data), error => this.errorMessage=error.error.message);
     this.employee = new Employee();
     this.gotoList();
   }

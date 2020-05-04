@@ -12,6 +12,7 @@ export class UpdateEmployeeComponent implements OnInit {
 
   id: number;
   employee: Employee;
+  errorMessage: any;
 
   constructor(private route: ActivatedRoute,private router: Router,
     private employeeService: EmployeeService) { }
@@ -19,7 +20,7 @@ export class UpdateEmployeeComponent implements OnInit {
   ngOnInit() {
     this.employee = new Employee();
 
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['employeeId'];
     
     this.employeeService.getEmployee(this.id)
       .subscribe(data => {
@@ -30,13 +31,15 @@ export class UpdateEmployeeComponent implements OnInit {
 
   updateEmployee() {
     this.employeeService.updateEmployee(this.id, this.employee)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => console.log(data), error => this.errorMessage=error.error.message);
     this.employee = new Employee();
     this.gotoList();
   }
 
   onSubmit() {
     this.updateEmployee();    
+    console.log("updated")
+    
   }
 
   gotoList() {

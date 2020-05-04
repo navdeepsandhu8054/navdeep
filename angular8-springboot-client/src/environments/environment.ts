@@ -9,6 +9,7 @@ export const environment = {
   createEmployees: "http://localhost:5564/Project1/EmployeeAPI/createEmployees",
   updateEmployee: "http://localhost:5564/Project1/EmployeeAPI/updateEmployees/",
   production: false
+  
 };
 
 /*
