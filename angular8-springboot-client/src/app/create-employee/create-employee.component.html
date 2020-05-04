@@ -2,22 +2,22 @@
 <div [hidden]="submitted" style="width: 400px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="name">First Name</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName">
+      <label for="fname">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.Name" name="fName">
     </div>
 
     <div class="form-group">
-      <label for="name">Last Name</label>
+      <label for="lname">Last Name</label>
       <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
     </div>
 
     <div class="form-group">
-      <label for="name">emailId</label>
+      <label for="emailId">emailId</label>
       <input type="email" class="form-control" id="emailId" required [(ngModel)]="employee.emailId" name="emailId">
     </div>
     
     <div class="form-group">
-      <label for="name">Mob No.</label>
+      <label for="number">Mob No.</label>
       <input type="number" class="form-control" id="mobileNo" required [(ngModel)]="employee.mobileNo" name="mobileNo">
     </div>
 

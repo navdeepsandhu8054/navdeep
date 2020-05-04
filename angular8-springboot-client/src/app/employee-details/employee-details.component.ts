@@ -20,7 +20,7 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit() {
     this.employee = new Employee();
 
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['employeeId'];
     
     this.employeeService.getEmployee(this.id)
       .subscribe(data => {
