@@ -1,26 +1,53 @@
 <h3>Update Employee</h3>
 <div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">First Name</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.name" name="firstName">
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName"
+      #firstName="ngModel">
+      <div *ngIf="firstName.invalid && firstName.dirty" class="text-danger">
+          This field is required
+      </div>
+    
     </div>
 
     <div class="form-group">
       <label for="name">Last Name</label>
-      <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName"
+      #lastName="ngModel">
+      <div *ngIf="lastName.invalid && lastName.dirty" class="text-danger">
+          This field is required
+      </div>
     </div>
 
     <div class="form-group">
       <label for="name">Email ID</label>
-      <input type="text" class="form-control" id="emailId" required [(ngModel)]="employee.emailId" name="emailId">
+      <input type="text" class="form-control" id="emailId" required [(ngModel)]="employee.emailId" name="emailId" #emailId="ngModel">
+      <div *ngIf="emailId.invalid && emailId.dirty" class="text-danger">
+          This field is required
+      </div>
     </div>
     <div class="form-group">
       <label for="name">Mobile No </label>
-      <input type="text" class="form-control" id="mobileNo" required [(ngModel)]="employee.mobileNo" name="mobileNo">
+      <input type="text" class="form-control" id="mobileNo" required [(ngModel)]="employee.mobileNo" name="mobileNo" #mobileNo="ngModel">
+      <div *ngIf="mobileNo.invalid && mobileNo.dirty" class="text-danger">
+          This field is required
+      </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
-    {{errorMessage}}
+    <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Submit</button>
+    <div *ngIf="successMessage && !errorMessage" class="text-success">
+      {{ successMessage }} <br>
+  </div>
+  <div *ngIf="errorMessage" class="text-danger">
+      {{ errorMessage }}
+  </div>
   </form>
+  <br>
+  <!-- </form> -->
+  <div class="form-group">
+  <button (click)="goBack()" class="btn btn-info ">Go to Home Page</button></div>
 </div>
+  <!-- <button type="button" (click)="goBack()" class="btn btn-primary">go to HomePage</button> -->
+
+<!-- </div> -->

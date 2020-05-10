@@ -13,6 +13,7 @@ export class UpdateEmployeeComponent implements OnInit {
   id: number;
   employee: Employee;
   errorMessage: any;
+  successMessage: string;
 
   constructor(private route: ActivatedRoute,private router: Router,
     private employeeService: EmployeeService) { }
@@ -32,8 +33,13 @@ export class UpdateEmployeeComponent implements OnInit {
   updateEmployee() {
     this.employeeService.updateEmployee(this.id, this.employee)
       .subscribe(data => console.log(data), error => this.errorMessage=error.error.message);
+      
     this.employee = new Employee();
-    this.gotoList();
+    //this.gotoList();
+
+    if(this.errorMessage==null){
+      this.successMessage="Details Updated successfully";
+    }
   }
 
   onSubmit() {
@@ -41,6 +47,7 @@ export class UpdateEmployeeComponent implements OnInit {
     console.log("updated")
     
   }
+  goBack(){this.gotoList();}
 
   gotoList() {
     this.router.navigate(['/employees']);

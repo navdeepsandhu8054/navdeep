@@ -1,32 +1,46 @@
 <h3>Create Employee</h3>
 <div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
+  <form #aForm="ngForm" (ngSubmit)="onSubmit()" >
+    <div  class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName" required #firstName="ngModel" >
+   
+              <div *ngIf="firstName.invalid && firstName.dirty" class="text-danger">
+                  This field is required
+              </div>
+            </div>
     <div class="form-group">
-      <label for="fname">First Name</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.name" name="fName">
-    </div>
-
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lName" required [(ngModel)]="employee.lastName" name="lastName" required #lastName="ngModel">
+    <div *ngIf="lastName.invalid && lastName.dirty" class="text-danger">
+          This field is required
+      </div></div>
     <div class="form-group">
-      <label for="lname">Last Name</label>
-      <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
-    </div>
-
-    <div class="form-group">
-      <label for="emailId">emailId</label>
-      <input type="email" class="form-control" id="emailId" required [(ngModel)]="employee.emailId" name="emailId">
-    </div>
-    
+      <label for="emailId">Email Id</label>
+      <input type="email" class="form-control" id="emailId" required [(ngModel)]="employee.emailId" name="emailId" required #emailId="ngModel">
+    <div *ngIf="emailId.invalid && emailId.dirty" class="text-danger">
+          This field is required
+      </div></div> 
     <div class="form-group">
       <label for="number">Mob No.</label>
-      <input type="number" class="form-control" id="mobileNo" required [(ngModel)]="employee.mobileNo" name="mobileNo">
-    </div>
+      <input type="number" class="form-control" id="mobileNo" required [(ngModel)]="employee.mobileNo" name="mobileNo" required #mobileNo="ngModel">
+    <div *ngIf="mobileNo.invalid && mobileNo.dirty" class="alert alert-danger">
+          This field is required
+      </div>
+    </div> 
 
-    <button type="submit" class="btn btn-success">Submit</button>
-    {{errorMessage}}
-  </form>
+    <button type="submit" class="btn btn-success" [disabled]="aForm.invalid">Submit</button>
+
+    <br>
+  </form><div class="form-group">
+  <button (click)="goBack()" class="btn btn-info ">Go to Home Page</button></div>
 </div>
 
 <div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <button class="btn btn-success" (click)="newEmployee()">Add</button>
-</div>
+  <h4> {{errorMessage}} </h4>
+  <div class="form-group">
+    <button class="btn btn-success" (click)="newEmployee()">Create Employee</button>
+    <button (click)="goBack()" class="btn btn-info ">Go to Home Page</button></div>
+  </div>  
+  
+
